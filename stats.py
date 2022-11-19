@@ -110,13 +110,13 @@ while True:
     # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
     cmd = "hostname -I |cut -f 1 -d ' '"
     IP = subprocess.check_output(cmd, shell = True )
-    cmd = "free -m | awk 'NR==2{printf \"RAM: %s/%sMB %.1f%%\", $3,$2,$3*100/$2 }'"
+    cmd = "free -m | awk 'NR==2{printf \"RAM:%s/%sM %.1f%%\", $3,$2,$3*100/$2 }'"
     Ram = subprocess.check_output(cmd, shell = True )
     cmd = "uptime -p"
     UP = subprocess.check_output(cmd, shell = True )
     cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
     CPU = subprocess.check_output(cmd, shell = True )
-    cmd = "vcgencmd measure_temp"
+    cmd = "vcgencmd measure_temp |cut -f 1,2,3 -d '='"
     Temp = subprocess.check_output(cmd, shell = True )
     cmd = "date -R |cut -f 1-4  -d ' '"
     Date = subprocess.check_output(cmd, shell = True )
