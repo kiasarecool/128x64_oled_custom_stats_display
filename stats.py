@@ -116,7 +116,7 @@ while True:
     UP = subprocess.check_output(cmd, shell = True )
     cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
     CPU = subprocess.check_output(cmd, shell = True )
-    cmd = "vcgencmd measure_temp |cut -f 2 -d ' '"
+    cmd = "vcgencmd measure_temp"
     Temp = subprocess.check_output(cmd, shell = True )
     cmd = "date -R |cut -f 1-4  -d ' '"
     Date = subprocess.check_output(cmd, shell = True )
@@ -125,10 +125,10 @@ while True:
 # Write two lines of text.
 
     draw.text((x, top),  "IP: " + str(IP,'utf-8'), font=font, fill=255)
-    draw.text((x, top+8),  str(CPU,'utf-8') , font=font, fill=255)
+    draw.text((x, top+8),  str(CPU,'utf-8') + "%", font=font, fill=255)
     draw.text((x, top+16), str(Ram,'utf-8'), font=font, fill=255)
     draw.text((x, top+25), str(UP,'utf-8'), font=font, fill=255)
-    draw.text((x, top+35),  "TEMP: " + str(Temp,'utf-8'), font=font, fill=255)
+    draw.text((x, top+35), str(Temp,'utf-8'), font=font, fill=255)
     draw.text((x, top+44), str(Date,'utf-8'), font=font, fill=255)
     draw.text((x, top+54),  "TIME: " + str(Time,'utf-8'), font=font, fill=255)
 # Display image.
