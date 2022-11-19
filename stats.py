@@ -116,7 +116,7 @@ while True:
     UP = subprocess.check_output(cmd, shell = True )
     cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
     CPU = subprocess.check_output(cmd, shell = True )
-    cmd = "vcgencmd measure_temp |cut -f 1,2,3 -d '='"
+    cmd = "vcgencmd measure_temp |cut -f 1-3  -d ' '"
     Temp = subprocess.check_output(cmd, shell = True )
     cmd = "date -R |cut -f 1-4  -d ' '"
     Date = subprocess.check_output(cmd, shell = True )
